@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hangman game</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body class="background">
+
+	<div class="container-fluid ">
+		<div class="row">
+			<header class="col-md-12">
+				<span id="header-img">
+					
+				</span>
+			
+			</header>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 text-center" id="midOne">
+				<h1>HANGMAN GAME</h1>
+				<h2>PRESS ANY KEY TO GET STARTED</h2>
+				<form>
+					<div class="form-group">
+						<label for="word">Guess The Word</label>
+    					<input type="text" id="inputbox" class="form-control" placeholder="Enter only characters" onkeypress="alphaOnly(event)">
+						
+					</div>
+				</form>
+				<div class="wins">
+					Number of Wins: <span id="numwins"></span>
+				</div>
+				<div class="cWord">
+					Current wins<br><span id="currWord"></span>
+				</div>
+				<div class="guessRem">
+					Number of Guesses Remaining<span id="noOfGuessRem"></span>
+					
+				</div>
+				<div class="failedLett">
+					Letters already Guessed<br><span id="guessedLett"></span>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+
+
+
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+</body>
+</html>
