@@ -7,12 +7,13 @@ var answerArray = [];
 var remainingLetters = 0;
 var flag = 0;
 var winCount = 0;
+var KeyWord;//user entered character
 
 document.onkeyup = function(event)
       {
-        var lit = event.key;
-        console.log(lit);
-        if (lit == 'k') {
+        //var lit = event.key;
+        console.log(event.keyCode);
+        if (event.keyCode == 32) {
          randamWordGenerator();
 
         }
@@ -21,9 +22,9 @@ document.onkeyup = function(event)
 function alphaOnly(event){
 
                 var keycode=event.keyCode;
-                var KeyWord = String.fromCharCode(keycode);
+                KeyWord = String.fromCharCode(keycode);
                 console.log(KeyWord);
-                if ((keycode < 97 || keycode > 122) && keycode>31){
+               if ((keycode < 97 || keycode > 122) && keycode>31){
                     alert("only charecters are allowed");
                 }
                     
@@ -65,6 +66,7 @@ function campareFunction(char){
                     var temp = answerArray.join(" ");
                     document.getElementById("inputbox").value = temp;
                     flag = 1;
+                    //remainingLetters--;
                     remainingLetters--;
 
                   }//end of if 
@@ -81,9 +83,10 @@ function campareFunction(char){
                   }
                  
 
-            }
+            }//end of for loop
             //wrong guess are pushed int the wrongGuessArray 
-            if (flag == 0 ){
+            //even after guessing the complete word it is accepting the input and it is moving into the wrongGuessArray 
+            if (flag == 0 && (wrongGuessArray.join().includes(KeyWord) == false) ){//need to modify here as wrongGuessArray is an array
 
                         wrongGuessArray.push(char);
                         var temp1 = wrongGuessArray.join(" ");
@@ -101,13 +104,21 @@ function campareFunction(char){
             if(limit == 0){
                 alert("you are out of lifes try again");
             }
-            if(randomWord == answerArray){
+            var strWithCom = answerArray.join();//string with commas eg:c,a,t
+            var str = strWithCom.replace( /,/g, "" );//sting with out commas eg:cat
+            if(randomWord == str){
                       alert("congrates you won");
                       winCount++;
                       document.getElementById("currWins").innerHTML = winCount;
+                      var audio = document.getElementById("myAudio");
+                      audio.play();
 
             }
             document.getElementById("currWins").innerHTML = winCount;
+            // if(str === "cow"){
+            //   var header = document.getElementByTagName('header')[0];
+            //   header.style.backgroundImage = 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr5uMooXGVK_Vufgwg9BdQduLbe_QFsxzmatrsdxOTCi9d-O-6")';
+            // }
            
 
 
