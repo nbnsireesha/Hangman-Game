@@ -6,6 +6,7 @@ var userChar;
 var answerArray = [];
 var remainingLetters = 0;
 var flag = 0;
+var winCount = 0;
 
 document.onkeyup = function(event)
       {
@@ -54,7 +55,7 @@ function randamWordGenerator(){
 }//end of randamWordGenerator function
 function campareFunction(char){
      remainingLetters = randomWord.length;
-    if (remainingLetters > 0 && limit<=13) {
+    if (remainingLetters > 0 && limit>=1) {
         for (var j = 0; j < randomWord.length; j++) {
 
                   if (randomWord[j] == char && answerArray[j]=="_") {
@@ -67,8 +68,22 @@ function campareFunction(char){
                     remainingLetters--;
 
                   }//end of if 
+                  //if user guessed 
+                  else if(randomWord[j] == char && answerArray[j]!="_")
+                  {
+                    alert("you choose one you have already choosen ");
+                    limit++;
+                  }
+                  //if user guessed the already wrong guessed one 
+                  else if (char == wrongGuessArray[j] ) {
+                      alert("you already guessed it and it's wrong");
+                      limit++;
+                  }
+                 
+
             }
-            if (flag == 0 ){//if it is not printed print it
+            //wrong guess are pushed int the wrongGuessArray 
+            if (flag == 0 ){
 
                         wrongGuessArray.push(char);
                         var temp1 = wrongGuessArray.join(" ");
@@ -77,6 +92,23 @@ function campareFunction(char){
             flag = 0;
             limit--;
             document.getElementById("noOfGuessRem").innerHTML = limit;
+            //if last chance to guess
+            if(limit==1){
+              alert("this is your last chance of guessing");
+
+            }
+            //if there are no lifes
+            if(limit == 0){
+                alert("you are out of lifes try again");
+            }
+            if(randomWord == answerArray){
+                      alert("congrates you won");
+                      winCount++;
+                      document.getElementById("currWins").innerHTML = winCount;
+
+            }
+            document.getElementById("currWins").innerHTML = winCount;
+           
 
 
     }
