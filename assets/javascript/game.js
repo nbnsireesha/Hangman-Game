@@ -40,6 +40,7 @@ function randamWordGenerator(){
 
              randomWord = words[Math.floor(Math.random() * words.length)];//computer will pick a randam word
              console.log("random word is :"+randomWord);
+              remainingLetters = randomWord.length;
 
             // Set up the answer array which have ---- whith the size of the word computer selects
              //var answerArray = [];
@@ -55,7 +56,7 @@ function randamWordGenerator(){
 
 }//end of randamWordGenerator function
 function campareFunction(char){
-     remainingLetters = randomWord.length;
+     //remainingLetters = randomWord.length;
     if (remainingLetters > 0 && limit>=1) {
         for (var j = 0; j < randomWord.length; j++) {
 
