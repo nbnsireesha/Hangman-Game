@@ -1,3 +1,4 @@
+var winCount = 0;
 var words = ["dog","monkey","cat","cow","horse"];
 var limit = 13;//we can try max of 13 times
 var wrongGuessArray = [];//this array will store the wrong guesses user made
@@ -6,7 +7,6 @@ var userChar;
 var answerArray = [];
 var remainingLetters = 0;
 var flag = 0;
-var winCount = 0;
 var KeyWord;//user entered character
 
 document.onkeyup = function(event)
@@ -21,10 +21,12 @@ document.onkeyup = function(event)
 
 function alphaOnly(event){
 
+  
+
                 var keycode=event.keyCode;
                 KeyWord = String.fromCharCode(keycode);
                 console.log(KeyWord);
-               if ((keycode < 97 || keycode > 122) && keycode>31){
+               if ((keycode < 97 || keycode > 122)){
                     alert("only charecters are allowed");
                 }
                     
@@ -33,7 +35,8 @@ function alphaOnly(event){
                     campareFunction(KeyWord);
                     console.log(KeyWord);
                 }
-           
+  
+         
 }
 
 function randamWordGenerator(){
@@ -52,7 +55,8 @@ function randamWordGenerator(){
 
             }
             var s = answerArray.join(" ");
-            document.getElementById("inputbox").value = s;
+           document.getElementById("inputbox").value = s;
+          // document.getElementById("inputbox").innerHTML = s;
 
 }//end of randamWordGenerator function
 function campareFunction(char){
@@ -60,10 +64,10 @@ function campareFunction(char){
     if (remainingLetters > 0 && limit>=1) {
         for (var j = 0; j < randomWord.length; j++) {
 
-                  if (randomWord[j] == char && answerArray[j]=="_") {
+                  if (randomWord[j] == char.toLowerCase() && answerArray[j]=="_") {
 
                     console.log(remainingLetters);
-                    answerArray[j] = char;
+                    answerArray[j] = char.toLowerCase();
                     var temp = answerArray.join(" ");
                     document.getElementById("inputbox").value = temp;
                     flag = 1;
@@ -72,13 +76,13 @@ function campareFunction(char){
 
                   }//end of if 
                   //if user guessed 
-                  else if(randomWord[j] == char && answerArray[j]!="_")
+                  else if(randomWord[j] == char.toLowerCase() && answerArray[j]!="_")
                   {
                     alert("you choose one you have already choosen ");
                     limit++;
                   }
                   //if user guessed the already wrong guessed one 
-                  else if (char == wrongGuessArray[j] ) {
+                  else if (char.toLowerCase() == wrongGuessArray[j]) {
                       alert("you already guessed it and it's wrong");
                       limit++;
                   }
@@ -87,9 +91,9 @@ function campareFunction(char){
             }//end of for loop
             //wrong guess are pushed int the wrongGuessArray 
             //even after guessing the complete word it is accepting the input and it is moving into the wrongGuessArray 
-            if (flag == 0 && (wrongGuessArray.join().includes(KeyWord) == false) ){//need to modify here as wrongGuessArray is an array
+            if (flag == 0 && (wrongGuessArray.join().includes(KeyWord.toLowerCase()) == false) ){//need to modify here as wrongGuessArray is an array
 
-                        wrongGuessArray.push(char);
+                        wrongGuessArray.push(char.toLowerCase());
                         var temp1 = wrongGuessArray.join(" ");
                         document.getElementById("guessedLett").innerHTML = temp1;
             }
@@ -104,6 +108,7 @@ function campareFunction(char){
             //if there are no lifes
             if(limit == 0){
                 alert("you are out of lifes try again");
+                resetGme();
             }
             var strWithCom = answerArray.join();//string with commas eg:c,a,t
             var str = strWithCom.replace( /,/g, "" );//sting with out commas eg:cat
@@ -113,6 +118,7 @@ function campareFunction(char){
                       document.getElementById("currWins").innerHTML = winCount;
                       var audio = document.getElementById("myAudio");
                       audio.play();
+                      resetGme();
 
             }
             document.getElementById("currWins").innerHTML = winCount;
@@ -120,9 +126,19 @@ function campareFunction(char){
             //   var header = document.getElementByTagName('header')[0];
             //   header.style.backgroundImage = 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr5uMooXGVK_Vufgwg9BdQduLbe_QFsxzmatrsdxOTCi9d-O-6")';
             // }
+            function resetGme(){
+              document.getElementById('inputbox').value='';
+                randamWordGenerator();
+                limit=13;
+                document.getElementById("noOfGuessRem").innerHTML = limit;
+                wrongGuessArray =[];
+                //answerArray = [];
+                document.getElementById("guessedLett").innerHTML = wrongGuessArray.join(" ");
+
+            }
            
 
 
-    }
+    }//end of if
     
-}
+}//end of compareFunction

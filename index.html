@@ -21,11 +21,14 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 text-center" id="midOne">
 				<h1>HANGMAN GAME</h1>
-				<h2>PRESS ANY KEY TO GET STARTED</h2>
+				<h2>PRESS SPACE BUTTON TO START THE GAME</h2>
 				<form>
 					<div class="form-group">
 						<label for="word">Guess The Word</label>
     					<input type="text" id="inputbox" class="form-control" placeholder="Enter only characters" onkeypress="alphaOnly(event)">
+    					<div>
+    						<span id="inputbox" onkeypress="alphaOnly(event)"></span>
+    					</div>
 						
 					</div>
 				</form>
