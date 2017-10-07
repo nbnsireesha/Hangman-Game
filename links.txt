@@ -1,1 +1,0 @@
-https://stackoverflow.com/questions/45002032/javascript-hangman-game-display-only-wrong-guesses-alert-when-user-wins
