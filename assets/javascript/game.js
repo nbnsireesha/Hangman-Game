@@ -16,6 +16,7 @@ document.onkeyup = function(event)
         if (event.keyCode == 32) {
          randamWordGenerator();
 
+
         }
  }
 
@@ -71,6 +72,7 @@ function campareFunction(char){
                     var temp = answerArray.join(" ");
                     document.getElementById("inputbox").value = temp;
                     flag = 1;
+                    // document.getElementById("inputbox").value = "";
                     //remainingLetters--;
                     remainingLetters--;
 
